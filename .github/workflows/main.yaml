@@ -11,7 +11,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0 # Needed for gitversion
+          
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.15
+        with:
+          versionSpec: '5.x'
+          
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0.9.15
+        with:
+          useConfigFile: true
+              
       - name: Setup .NET 9.0
         uses: actions/setup-dotnet@v4
         with:
@@ -35,6 +47,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.gitversion.outputs.fullSemVer }}
           files: release.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
