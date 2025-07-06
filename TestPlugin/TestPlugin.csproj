@@ -8,10 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="KlaarDesk.Plugins" Version="0.1.0" >
+        <PackageReference Include="KlaarDesk.Plugins" Version="0.1.2">
             <ExcludeAssets>runtime</ExcludeAssets>
         </PackageReference>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Minio" Version="6.0.5" />
     </ItemGroup>
 
 </Project>
